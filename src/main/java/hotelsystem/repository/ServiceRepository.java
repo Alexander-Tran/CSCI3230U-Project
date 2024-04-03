@@ -1,7 +1,7 @@
 package hotelsystem.repository;
 
-import hotelsystem.model.Service;
+import hotelsystem.model.ProvidedServices;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ServiceRepository extends JpaRepository<Service, Long> {
+public interface ServiceRepository extends JpaRepository<ProvidedServices, Long> {
 }
