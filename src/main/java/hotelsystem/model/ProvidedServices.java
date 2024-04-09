@@ -11,8 +11,6 @@ public class ProvidedServices {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public ProvidedServices() {}
-
     public ProvidedServices() {
         //TODO
     }
