@@ -1,21 +1,28 @@
 package hotelsystem.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "ROOM")
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int number; //Room number
-    private double price; //Price per night (?)
+    private int number;
+    private double price;
+    
+    @OneToMany(mappedBy = "rooms")
+    private List<Booking> bookings;
 
-    public Room() {}
+    //Constructor
+    public Room() {
+    	this.bookings = new ArrayList<Booking>();
+    } 
 
-    public Room(int number, double price) {
+    //Parameterized constructor
+    public Room(int number, double price) { 
         this.number = number;
         this.price = price;
     }
@@ -44,4 +51,10 @@ public class Room {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    //toString
+	@Override
+	public String toString() {
+		return "Room [id=" + id + ", number=" + number + ", price=" + price + "]";
+	}
 }

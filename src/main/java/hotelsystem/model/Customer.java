@@ -1,11 +1,11 @@
 package hotelsystem.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "CUSTOMER")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,11 +15,17 @@ public class Customer {
     private String lastName;
     private String email;
     private Long phoneNumber;
+    
+    @OneToMany(mappedBy = "customers")
+    private List<Booking> bookings;
 
-    public Customer() {}
+    //Constructor
+    public Customer() {
+    	this.bookings = new ArrayList<Booking>();
+    }
 
-    public Customer(Long id, Customer customer, String firstName, String lastName, String email, Long phoneNumber) {
-        this.id = id;
+    //Parameterized constructor	
+    public Customer(Customer customer, String firstName, String lastName, String email, Long phoneNumber) {
         this.customer = customer;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -75,4 +81,11 @@ public class Customer {
     public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    //toString
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", customer=" + customer + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", email=" + email + ", phoneNumber=" + phoneNumber + ", bookings=" + bookings + "]";
+	}
 }
