@@ -12,6 +12,10 @@ public class ProvidedServices {
     private String description;
     private Double price;
 
+    @ManyToOne
+    @JoinColumn(name = "PROVIDEDSERVICE_ID")
+    private Booking booking;
+
     //Constructor
     public ProvidedServices() {}
     

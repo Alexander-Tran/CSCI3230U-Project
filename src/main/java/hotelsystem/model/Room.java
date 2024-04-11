@@ -13,7 +13,7 @@ public class Room {
     private int number;
     private double price;
     
-    @OneToMany(mappedBy = "rooms")
+    @OneToMany(mappedBy = "room")
     private List<Booking> bookings;
 
     //Constructor

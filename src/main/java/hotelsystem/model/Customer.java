@@ -10,13 +10,12 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Customer customer; 
     private String firstName;
     private String lastName;
     private String email;
     private Long phoneNumber;
     
-    @OneToMany(mappedBy = "customers")
+    @OneToMany(mappedBy = "customer")
     private List<Booking> bookings;
 
     //Constructor
@@ -25,8 +24,7 @@ public class Customer {
     }
 
     //Parameterized constructor	
-    public Customer(Customer customer, String firstName, String lastName, String email, Long phoneNumber) {
-        this.customer = customer;
+    public Customer(String firstName, String lastName, String email, Long phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -40,14 +38,6 @@ public class Customer {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
 
     public String getFirstName() {
@@ -85,7 +75,7 @@ public class Customer {
     //toString
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", customer=" + customer + ", firstName=" + firstName + ", lastName=" + lastName
+		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", email=" + email + ", phoneNumber=" + phoneNumber + ", bookings=" + bookings + "]";
 	}
 }

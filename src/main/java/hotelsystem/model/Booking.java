@@ -12,11 +12,17 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     //Each booking has a customer and a room (?)
-    private Customer customer; 
     private Date date;
-    private Room room;
     
-    @OneToMany(mappedBy = "bookings")
+    @ManyToOne
+    @JoinColumn(name = "CUSTOMER_ID")
+    private Customer customer; 
+
+    @ManyToOne
+    @JoinColumn(name = "ROOM_ID")
+    private Room room;
+
+    @OneToMany(mappedBy = "booking")
     private List<ProvidedServices> providedServices;
 
     //Constructor
