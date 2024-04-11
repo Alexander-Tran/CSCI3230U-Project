@@ -29,7 +29,7 @@ public class BookingController {
         return "bookings";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/save-booking")
     public String saveBooking(@ModelAttribute("booking") Booking booking) {
         bookingService.save(booking);
         return "redirect:/bookings";

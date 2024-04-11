@@ -22,15 +22,17 @@
 	<!-- this is where you enter info to add new rooms (room number, price - per night?) -->
 	<section class = "add-room-container">
 		<!-- object creation is handled in frontend? -->
-		<form th:action="@{/addRoom}" method = "post" th:object="${Room}">
+		<form th:action="@{/save-room}" th:object="${room}" method = "post">
 			<!-- need to convert number to int? for backend or prob better to change number in backend to String -->
-			<label>Room Number: </label>
-			<input type="text" th:field="*{number}">
+			<label for="roomNumber">Room Number:</label>
+			<input type="text" id="roomNumber" th:field="*{roomNumber}" />
 			<!-- need to convert price to double? for backend or prob better to change price in backend to String -->
-			<label>Room Price : </label>
-			<input type="text" th:field="*{price}">
+			<label for="type">Room Type:</label>
+			<input type="text" id="type" th:field="*{type}" />
+            <label for="price">Room Price:</label>
+			<input type="text" id="price" th:field="*{price}" />
 			
-			<input type="submit" value="Add Room">
+			<button type="submit">Save</button>
 		</form>
 	</section>
 
@@ -38,15 +40,13 @@
 
     <section class = "rooms-container"> 
 		<!-- idk what the name of the list of rooms list is supposed to be (says listBookings right now and only one method in controller) -->
-		<div th:each="room : ${rooms}">
-            <div class = "room-card">
-                
-				<p th:text="${room.number}"/>
-				<p th:text="${room.price}"/>
-			
-				<button class = "remove-room-button">Remove</button> <!-- add action to remove room -->
+		<div th:each="room : ${listRooms}">
+            <div th:text="${room.roomNumber}">Room Number</div>
+            <div th:text="${room.type}">Room Type</div>
+            <div th:text="${room.price}">Room Price</div>
+            <button class = "remove-room-button">Remove</button> <!-- add action to remove room -->
             </div>	
-		</div>
+        </div>
 					
 		<!-- temp placebolder values for visual testing -->
         <div class = "room-card">

@@ -29,9 +29,9 @@ public class ProvidedServiceController {
         return "service";
     }
 
-    @PostMapping("/save")
-    public String saveRoom(@ModelAttribute("providedService") ProvidedServices providedService) {
+    @PostMapping("/save-service")
+    public String saveProvidedService(@ModelAttribute("providedService") ProvidedServices providedService) {
         providedServiceService.save(providedService);
-        return "redirect:/rooms";
+        return "redirect:/services";
     }
 }

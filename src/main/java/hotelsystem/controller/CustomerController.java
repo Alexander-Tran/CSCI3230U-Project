@@ -18,6 +18,8 @@ public class CustomerController {
     
     @GetMapping("/customers")
     public String viewHomePage(Model model) {
+        Customer customer = new Customer();
+        model.addAttribute("customer", customer);
         model.addAttribute("listCustomers", customerService.listAll());
         return "customer";
     }
@@ -29,7 +31,7 @@ public class CustomerController {
         return "customer";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/save-customer")
     public String saveCustomer(@ModelAttribute("customer") Customer customer) {
         customerService.save(customer);
         return "redirect:/customers";
