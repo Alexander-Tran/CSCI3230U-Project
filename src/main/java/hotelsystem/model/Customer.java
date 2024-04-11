@@ -72,6 +72,14 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
     //toString
 	@Override
 	public String toString() {
