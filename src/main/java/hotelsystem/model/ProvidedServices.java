@@ -9,16 +9,20 @@ public class ProvidedServices {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String description;
+    private Double price;
 
     //Constructor
     public ProvidedServices() {}
     
     //Parameterized constructor
-    public ProvidedServices(String name) {
+    public ProvidedServices(String name, String description, Double price) {
     	this.name = name;
+    	this.description = description;
+    	this.price = price;
     }
 
-    //Getters and setters
+	//Getters and setters
 	public Long getId() {
 		return id;
 	}
@@ -33,6 +37,22 @@ public class ProvidedServices {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 	//toString
