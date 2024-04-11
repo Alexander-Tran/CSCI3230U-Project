@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Manager - Book Rooms</title>
+    <title>Hotel Manager - Rooms</title>
     <link rel = "stylesheet" href = "../static/roomsStyle.css">
 </head>
 <body>
@@ -13,46 +13,60 @@
             <a href = "/rooms">Rooms</a>   
             <a href = "/bookings">Bookings</a> 
             <a href = "/services">Service</a>
-            <a href = "/customers">Profile</a> 
+            <a href = "/customers">Customers</a> 
         </nav>
     </header>
 
-    <h1 class = "title"> Book your Room </h1>
+    <h1 class = "title"> List of Rooms </h1>
+	
+	<!-- this is where you enter info to add new rooms (room number, price - per night?) -->
+	<section class = "add-room-container">
+		<!-- object creation is handled in frontend? -->
+		<form th:action="@{/addRoom}" method = "post" th:object="${Room}">
+			<!-- need to convert number to int? for backend or prob better to change number in backend to String -->
+			<label>Room Number: </label>
+			<input type="text" th:field="*{number}">
+			<!-- need to convert price to double? for backend or prob better to change price in backend to String -->
+			<label>Room Price : </label>
+			<input type="text" th:field="*{price}">
+			
+			<input type="submit" value="Add Room">
+		</form>
+	</section>
 
     <h2 class = "subtitle"> Rooms </h2>
 
     <section class = "rooms-container"> 
+		<!-- idk what the name of the list of rooms list is supposed to be (says listBookings right now and only one method in controller) -->
+		<div th:each="room : ${rooms}">
             <div class = "room-card">
-                <!-- image can be what's inside the room? although all rooms will look pretty similar... -->
-                <img src = "" alt = "Room Image" class = "room-image">
-                <!-- placeholder values - retrieve and create these in java?-->
-                <div class = "room-details">
-                    <p class = "room-number"> room 301 </p>
-                    <p class = "room-description"> floor 3, 2 beds </p>
-                    <div class = "room-pricing"> 
-                        <p> Price: </p>
-                        <p class = "room-price"> $149</p> 
-                        <p>per night</p>
-                    </div>
-                    <button class = "room-book-button">Book</button>
-                </div>
-            </div>
-            <div class = "room-card">
-                <!-- image can be what's inside the room? although all rooms will look pretty similar... -->
-                <img src = "" alt = "Room Image" class = "room-image">
+                
+				<p th:text="${room.number}"/>
+				<p th:text="${room.price}"/>
+			
+				<button class = "remove-room-button">Remove</button> <!-- add action to remove room -->
+            </div>	
+		</div>
+					
+		<!-- temp placebolder values for visual testing -->
+        <div class = "room-card">
+            <!-- image can be what's inside the room? although all rooms will look pretty similar... -->
+			<!-- we can add some static image we find online for all the rooms (to make frontend look prettier...) -->
+            <!-- <img src = "" alt = "Room Image" class = "room-image"> -->
 
-                <div class = "room-details">
-                    <!-- placeholder values-->
-                    <p class = "room-number"> room 404 </p>
-                    <p class = "room-description"> floor 4, 4 beds </p>
-                    <div class = "room-pricing"> 
-                        <p> Price: </p>
-                        <p class = "room-price"> $124</p> 
-                        <p>per night</p>
-                    </div>
-                    <button class = "room-book-button">Book</button>
+            <div class = "room-details">
+                <p class = "room-number"> room 404 </p>
+				
+				<p class = "room-price"> Price: $124 per night</p> <!-- not sure which style we should use -->
+                <div class = "room-pricing"> 
+                    <p> Price: </p>
+                    <p class = "room-price"> $124</p> 
+                    <p>per night</p>
                 </div>
+				
+                <button class = "remove-room-button">Remove</button>
             </div>
+        </div>
     </section>
 </body>
 </html>

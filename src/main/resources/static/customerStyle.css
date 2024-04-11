@@ -50,14 +50,11 @@ header h1 {
     padding-left: 20%;
 }
 
-/* profile stuff */
-.profile {
+.subtitle {
+
     padding-top: 20px;
     padding-left: 20%;
-}
-.profile img {
-    width: 150px;
-    height: 150px;
+    margin-left: 20px;
 }
 
 .info-row {
@@ -69,3 +66,30 @@ header h1 {
     /* margin: 10px; */
 }
 
+/* customer card styling */
+
+.customers-container {
+    /* margin-top: 10px; */
+    /* padding: 10px; */
+
+    display: flex;
+    flex-direction: column; /* stack items vertically */
+    align-items: center; /* center items horizontally */
+}
+
+.customer-card {
+    background-color: white;
+
+    border: 1px solid;
+    border-color: black;
+    width: 800px;
+
+    padding: 10px;
+    margin-top: 10px;
+    
+    display: flex;
+}
+
+.customer-card p {
+    padding-right: 10px;
+}
