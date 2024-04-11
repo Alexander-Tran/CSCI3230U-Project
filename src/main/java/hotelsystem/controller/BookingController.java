@@ -18,14 +18,9 @@ public class BookingController {
 
     @GetMapping("/bookings")
     public String viewHomePage(Model model) {
-        model.addAttribute("listBookings", bookingService.listAll());
-        return "bookings";
-    }
-
-    @GetMapping("/bookings-new")
-    public String showNewBookingForm(Model model) {
         Booking booking = new Booking();
         model.addAttribute("booking", booking);
+        model.addAttribute("listBookings", bookingService.listAll());
         return "bookings";
     }
 

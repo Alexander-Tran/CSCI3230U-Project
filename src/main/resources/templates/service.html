@@ -22,30 +22,30 @@
 	<!-- this is where you enter info to add new services (name, description, price) -->
 	<section class = "add-service-container">
 		<!-- object creation is handled in frontend -->
-		<form th:action="@{/addService}" method = "post" th:object="${ProvidedServices}">
+		<form th:action="@{/save-service}" method = "post" th:object="${providedService}">
 			<label>Name: </label>
-			<input type="text" th:field="*{name}">
+			<input type="text" th:field="*{name}" />
 			<label>Description: </label>
-			<input type="text" th:field="*{description}">
+			<input type="text" th:field="*{description}" />
 			<!-- need to convert price to double for backend or change price in backend to String -->
 			<label>Price: </label>
-			<input type="text" th:field="*{price}">
+			<input type="text" th:field="*{price}" />
 			
-			<input type="submit" value="Add Service">
+			<button type="submit">Save</button>
 		</form>
 	</section>
 	
-	<h2 class = "subtitle"> Serices </h2>
+	<h2 class = "subtitle"> Services </h2>
 		
 	    <section class = "service-container"> 
 			
 			<!-- idk what the name of the list of services is supposed to be (says listBookings right now) -->
-			<div th:each="service : ${services}">
+			<div th:each="service : ${listProvidedServices}">
 	            <div class = "service-card">
 	                
-					<p th:text="${service.name}"/>
-					<p th:text="${service.description}"/>
-					<p th:text="${service.price}"/>
+					<p th:text="${service.name}">
+					<p th:text="${service.description}">
+					<p th:text="${service.price}">
 				
 					<button class = "room-book-button">Remove</button> <!-- add action to remove service -->
 	            </div>	

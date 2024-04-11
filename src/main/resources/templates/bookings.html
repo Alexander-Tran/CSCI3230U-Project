@@ -22,19 +22,21 @@
 	<!-- this is where you enter info to add new bookings (start date, end date, customer email, service?) -->
 	<section class = "add-booking-container">
 		<!-- handle object creation in backend -->
-		<form th:action="@{/addBooking}" method = "post">
+		<form th:action="@{/save-booking}" method = "post" th:object="${booking}">
 			<label>Start Date: </label>
-			<input type="text" th:field="*{startDate}">
+			<input type="text" th:field="*{startDate}" />
 			<label>End Date: </label>
-			<input type="text" th:field="*{endDate}">
+			<input type="text" th:field="*{endDate}" />
 			<!-- be able to search by customer email in backend ('getCustomerByEmail' method) and add it to the booking object-->
 			<label>Customer email: </label>
-			<input type="text" th:field="*{email}">
+			<input type="text" th:field="*{email}" />
 			<!-- put this inside the 'card' so that you can add services to the list (type in name of service, then have 'getServiceByName' method in backend to get the service by name from service repo and add the service to the booking object's service list-->
-			<label>Service: </label>
-			<input type="text" th:field="*{service}">
+			<label>Customer: </label>
+			<input type="text" th:field="*{customer}" />
+			<label>Room number: </label>
+			<input type="text" th:field="*{room}" />
 			
-			<input type="submit" value="Add Booking">
+			<button type="submit">Save</button>
 		</form>
 	</section>
 	
@@ -49,26 +51,26 @@
                 
                 <!-- customer details (first name, last name, email, phone)-->
 				<div class = "customer-details">
-					<p th:text="${booking.customer.firstName}"/>
-					<p th:text="${booking.customer.lastName}"/>
-					<p th:text="${booking.customer.email}"/>
-					<p th:text="${booking.customer.phoneNumber}"/>
+					<p th:text="${booking.customer.firstName}">
+					<p th:text="${booking.customer.lastName}">
+					<p th:text="${booking.customer.email}">
+					<p th:text="${booking.customer.phoneNumber}">
 				</div>
 				<!-- room details (number, price, description?)-->
                 <div class = "room-details">
-                    <p th:text="${booking.room.number"/>
+                    <p th:text="${booking.room.number}">
                     <div class = "room-pricing"> 
                         <p> Price: </p>
-                        <p th:text="${booking.room.price}"/> 
+                        <p th:text="${booking.room.price}"> 
                         <p>per night</p>
                     </div>
-                    <p class = "booking-details" th:text="${booking.Date}"/>
+                    <p class = "booking-details" th:text="${booking.startDate}">
                     
                 </div>
 				<div class = "services-list" th:each="service : ${booking.providedServices}">
-					<p th:text="${service.name}"/>
-					<p th:text="${service.description}"/>
-					<p th:text="${service.price}"/>
+					<p th:text="${service.name}">
+					<p th:text="${service.description}">
+					<p th:text="${service.price}">
 				</div>
 				<button class = "room-book-button">Remove</button> <!-- add action to remove booking -->
             </div>	

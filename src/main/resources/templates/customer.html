@@ -22,18 +22,18 @@
 	<!-- this is where you enter info to add new customers (first name, last name, email, phone ) -->
 	<section class = "add-customer-container">
 		<!-- object creation is handled in frontend? -->
-		<form th:action="@{/addCustomer}" method = "post" th:object="${Customer}">
-			<label>First Name: </label>
-			<input type="text" th:field="*{firstName}">
-			<label>Last Name: </label>
-			<input type="text" th:field="*{lastName}">
-			<label>Email: </label>
-			<input type="text" th:field="*{email}">
+		<form th:action="@{/save-customer}" method = "post" th:object="${customer}">
+			<label>First Name:</label>
+			<input type="text" th:field="*{firstName}" />
+			<label>Last Name:</label>
+			<input type="text" th:field="*{lastName}" />
+			<label>Email:</label>
+			<input type="text" th:field="*{email}" />
 			<!-- need to convert phone to long? for backend or prob better to change phone in backend to String -->
-			<label>Phone Number: </label>
-			<input type="text" th:field="*{phoneNumber}">
+			<label>Phone Number:</label>
+			<input type="text" th:field="*{phoneNumber}" />
 			
-			<input type="submit" value="Add Customer">
+			<button type="submit">Save</button>
 		</form>
 	</section>
 	
@@ -41,13 +41,13 @@
 	
 	<section class = "customers-container"> 
 		<!-- idk what the name of the list of rooms list is supposed to be (says listBookings right now and only one method in controller) -->
-		<div th:each="customer : ${customers}">
+		<div th:each="customer : ${listCustomers}">
 	        <div class = "customer-card">
 	            
-				<p th:text="${customer.firstName}"/>
-				<p th:text="${customer.lastName}"/>
-				<p th:text="${customer.email}"/>
-				<p th:text="${customer.phoneNumber}"/>
+				<p th:text="${customer.firstName}">
+				<p th:text="${customer.lastName}">
+				<p th:text="${customer.email}">
+				<p th:text="${customer.phoneNumber}">
 			
 				<button class = "remove-customer-button">Remove</button> <!-- add action to remove customer -->
 	        </div>	

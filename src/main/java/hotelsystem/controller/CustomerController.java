@@ -24,13 +24,6 @@ public class CustomerController {
         return "customer";
     }
 
-    @GetMapping("/customers-new")
-    public String showNewCustomerForm(Model model) {
-        Customer customer = new Customer();
-        model.addAttribute("customer", customer);
-        return "customer";
-    }
-
     @PostMapping("/save-customer")
     public String saveCustomer(@ModelAttribute("customer") Customer customer) {
         customerService.save(customer);

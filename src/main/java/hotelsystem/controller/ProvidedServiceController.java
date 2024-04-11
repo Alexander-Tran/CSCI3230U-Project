@@ -18,14 +18,9 @@ public class ProvidedServiceController {
     
     @GetMapping("/services")
     public String viewHomePage(Model model) {
-        model.addAttribute("listProvidedServices", providedServiceService.listAll());
-        return "service";
-    }
-
-    @GetMapping("/services-new")
-    public String showNewProvidedServiceForm(Model model) {
         ProvidedServices providedService = new ProvidedServices();
         model.addAttribute("providedService", providedService);
+        model.addAttribute("listProvidedServices", providedServiceService.listAll());
         return "service";
     }
 

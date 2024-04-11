@@ -24,13 +24,6 @@ class RoomController {
         return "rooms";
     }
 
-    @GetMapping("/rooms-new")
-    public String showNewRoomForm(Model model) {
-        //Room room = new Room();
-        model.addAttribute("room", new Room());
-        return "rooms";
-    }
-
     @PostMapping("/save-room")
     public String saveRoom(@ModelAttribute("room") Room room) {
         roomService.save(room);
