@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,48 +13,100 @@
             <a href = "/rooms">Rooms</a>   
             <a href = "/bookings">Bookings</a> 
             <a href = "/services">Service</a>
-            <a href = "/customers">Profile</a> 
+            <a href = "/customers">Customers</a> 
         </nav>
     </header>
 
-    <h1 class = "title"> Your Bookings </h1>
+    <h1 class = "title"> List of Customer Bookings </h1>
 
-    <h2 class = "subtitle"> Rooms </h2>
-
-    <section class = "rooms-container"> 
-            <div class = "room-card">
-                <!-- image can be what's inside the room? although all rooms will look pretty similar... -->
-                <img src = "" alt = "Room Image" class = "room-image">
+	<!-- this is where you enter info to add new bookings (start date, end date, customer email, service?) -->
+	<section class = "add-booking-container">
+		<!-- handle object creation in backend -->
+		<form th:action="@{/addBooking}" method = "post">
+			<label>Start Date: </label>
+			<input type="text" th:field="*{startDate}">
+			<label>End Date: </label>
+			<input type="text" th:field="*{endDate}">
+			<!-- be able to search by customer email in backend ('getCustomerByEmail' method) and add it to the booking object-->
+			<label>Customer email: </label>
+			<input type="text" th:field="*{email}">
+			<!-- put this inside the 'card' so that you can add services to the list (type in name of service, then have 'getServiceByName' method in backend to get the service by name from service repo and add the service to the booking object's service list-->
+			<label>Service: </label>
+			<input type="text" th:field="*{service}">
+			
+			<input type="submit" value="Add Booking">
+		</form>
+	</section>
+	
+	<h2 class = "subtitle"> Bookings </h2>
+	
+    <section class = "bookings-container"> 
+		<div th:each="booking : ${listBookings}">
+			<!-- each booking card contains information on the booking: one side will be for customer details, another will be for room details, and another will be for list of services-->
+            <div class = "booking-card">
+                <!-- bookings probably don't need an image of the room -->
+                <!-- <img src = "" alt = "Room Image" class = "room-image"> -->
                 
-                <!-- placeholder values - retrieve and create these in java?-->
+                <!-- customer details (first name, last name, email, phone)-->
+				<div class = "customer-details">
+					<p th:text="${booking.customer.firstName}"/>
+					<p th:text="${booking.customer.lastName}"/>
+					<p th:text="${booking.customer.email}"/>
+					<p th:text="${booking.customer.phoneNumber}"/>
+				</div>
+				<!-- room details (number, price, description?)-->
                 <div class = "room-details">
-                    <p class = "room-number"> room 301 </p>
-                    <p class = "room-description"> floor 3, 2 beds </p>
+                    <p th:text="${booking.room.number"/>
                     <div class = "room-pricing"> 
                         <p> Price: </p>
-                        <p class = "room-price"> $149</p> <!-- placeholder-->
+                        <p th:text="${booking.room.price}"/> 
                         <p>per night</p>
                     </div>
-                    <p class = "booking-details"> Mar 13 - Mar 14, 2024 (1 Night) </p>
-                    <button class = "room-book-button">Remove</button>
+                    <p class = "booking-details" th:text="${booking.Date}"/>
+                    
                 </div>
-            </div>
-            <div class = "room-card">
-                <!-- image can be what's inside the room? although all rooms will look pretty similar... -->
-                <img src = "" alt = "Room Image" class = "room-image">
-
-                <div class = "room-details">
-                    <p class = "room-number"> room 404 </p>
-                    <p class = "room-description"> floor 4, 4 beds </p>
-                    <div class = "room-pricing"> 
-                        <p> Price: </p>
-                        <p class = "room-price"> $124</p> <!-- placeholder-->
-                        <p>per night</p>
-                    </div>
-                    <p class = "booking-details"> Mar 16 - Mar 18, 2024 (2 Nights) </p>
-                    <button class = "room-book-button">Remove</button>
+				<div class = "services-list" th:each="service : ${booking.providedServices}">
+					<p th:text="${service.name}"/>
+					<p th:text="${service.description}"/>
+					<p th:text="${service.price}"/>
+				</div>
+				<button class = "room-book-button">Remove</button> <!-- add action to remove booking -->
+            </div>	
+		</div>
+		
+		<!-- temp placebolder values for visual testing -->
+        <div class = "booking-card">
+            <!-- image can be what's inside the room? although all rooms will look pretty similar... -->
+            <!-- <img src = "" alt = "Room Image" class = "room-image"> -->
+			
+			<div class = "customer-details">
+				<p > first </p>
+				<p > last </p>
+				<p > email@email.com </p>
+				<p > 123-123-1234 </p>
+			</div>
+			
+            <div class = "room-details">
+                <p class = "room-number"> room 404 </p>
+                <div class = "room-pricing"> 
+                    <p> Price: </p>
+                    <p class = "room-price"> $124</p>
+                    <p>per night</p>
                 </div>
+                <p class = "booking-details"> Mar 16 - Mar 18, 2024 (2 Nights) </p>
+                
             </div>
+			<div class = "services-list">
+				<p> Cleaning Services </p>
+				<p> Our staff will clean the room</p>
+				<p> Price: $20</p>
+				<p> Food Services </p>
+				<p> Our staff will provide lunch and dinner</p>
+				<p> Price: $20</p>
+			</div>
+			<button class = "room-book-button">Remove</button>
+        </div>
+		
     </section>
 </body>
 </html>

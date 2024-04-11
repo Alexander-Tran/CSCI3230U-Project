@@ -58,7 +58,7 @@ header h1 {
 }
 
 /* room listings style */
-.rooms-container {
+.bookings-container {
     /* margin-top: 10px; */
     /* padding: 10px; */
 
@@ -67,7 +67,7 @@ header h1 {
     align-items: center; /* center items horizontally */
 }
 
-.room-card {
+.booking-card {
     background-color: white;
 
     border: 1px solid;
@@ -80,14 +80,28 @@ header h1 {
     display: flex;
 }
 
-.room-card img {
+.booking-card img {
     width: 60%;
     max-height: 100px;
     object-fit: cover;
 }
 
+.customer-details { 
+    width: 30%;
+    object-fit: cover;
+    text-align: left;
+    display: flex;
+    flex-direction: column; 
+}
+
 .room-details {
     text-align: left;
+    display: flex;
+    flex-direction: column; 
+}
+
+.service-list {
+	text-align: left;
     display: flex;
     flex-direction: column; 
 }

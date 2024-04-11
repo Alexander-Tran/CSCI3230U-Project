@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,16 +13,62 @@
             <a href = "/rooms">Rooms</a>   
             <a href = "/bookings">Bookings</a> 
             <a href = "/services">Service</a>
-            <a href = "/customers">Profile</a> 
+            <a href = "/customers">Customers</a> 
         </nav>
     </header>
 
-    <h1 class = "title">Select your Services</h1>
+    <h1 class = "title">List of Services</h1>
 
-    <section class="services">
+	<!-- this is where you enter info to add new services (name, description, price) -->
+	<section class = "add-booking-container">
+		<!-- object creation is handled in frontend -->
+		<form th:action="@{/addService}" method = "post" th:object="${ProvidedServices}">
+			<label>Name: </label>
+			<input type="text" th:field="*{name}">
+			<label>Description: </label>
+			<input type="text" th:field="*{description}">
+			<!-- need to convert price to double for backend or change price in backend to String -->
+			<label>Price: </label>
+			<input type="text" th:field="*{price}">
+			
+			<input type="submit" value="Add Service">
+		</form>
+	</section>
+	
+	<h2 class = "subtitle"> Serices </h2>
+		
+	    <section class = "service-container"> 
+			
+			<!-- idk what the name of the list of services is supposed to be (says listBookings right now) -->
+			<div th:each="service : ${services}">
+	            <div class = "service-card">
+	                
+					<p th:text="${service.name}"/>
+					<p th:text="${service.description}"/>
+					<p th:text="${service.price}"/>
+				
+					<button class = "room-book-button">Remove</button> <!-- add action to remove service -->
+	            </div>	
+			</div>
+			
+			<!-- temp placebolder values for visual testing -->
+	        <div class = "service-card">
+				
+				<p> Cleaning Services </p>
+				<p> Our staff will clean the room</p>
+				<p> Price: $20</p>
 
-        <p> idk what's supposed to go here</p>
-        
-    </section>
+				<button class = "room-book-button">Remove</button>
+	        </div>
+			<div class = "service-card">
+				<p> Food Services </p>
+				<p> Our staff will provide lunch and dinner</p>
+				<p> Price: $20</p>
+				
+				<button class = "room-book-button">Remove</button>
+			</div>
+			
+		</section>
+	
 </body>
 </html>
