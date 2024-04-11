@@ -24,5 +24,13 @@ public class RoomService {
     public Room get(Long id) {
         return roomRepository.findById(id).get();
     }
+    
+    public void delete(Long id) {
+    	roomRepository.deleteById(id);
+    }
+    
+    public List<Room> searchByType(String type) {
+    	return roomRepository.findByType(type);
+    }
 }
 

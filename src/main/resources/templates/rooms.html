@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Manager - Rooms</title>
-    <link rel = "stylesheet" href = "../static/roomsStyle.css">
+    <link rel = "stylesheet" th:href = "roomsStyle.css">
 </head>
 <body>
     <header>
         <h1>Hotel Manager (name w.i.p.)</h1>
         <nav class = "page-links" >
-	    <a href = "/index">Index</a>
+        	<a href = "/index">Index</a>
             <a href = "/rooms">Rooms</a>   
             <a href = "/bookings">Bookings</a> 
             <a href = "/services">Service</a>
@@ -19,6 +19,7 @@
     </header>
 
     <h1 class = "title"> List of Rooms </h1>
+	    
 	
 	<!-- this is where you enter info to add new rooms (room number, price - per night?) -->
 	<section class = "add-room-container">
@@ -41,12 +42,13 @@
 
     <section class = "rooms-container"> 
 		<!-- idk what the name of the list of rooms list is supposed to be (says listBookings right now and only one method in controller) -->
-		<div th:each="room : ${listRooms}">
-            <div th:text="${room.roomNumber}">Room Number</div>
+		<div th:each="room : ${listRooms}" class="room-card">
+            <div th:text="${room.roomNumber}" class="room-number">Room Number</div>
             <div th:text="${room.type}">Room Type</div>
-            <div th:text="${room.price}">Room Price</div>
-            <button class = "remove-room-button">Remove</button> <!-- add action to remove room -->
-            </div>	
+            <div th:text="${room.price}" class="room-price">Room Price</div>
+            <form th:action="@{/remove-room(id=${room.id})}" method="post">
+            	<button type="submit" class="remove-room-button">Remove</button> <!-- add action to remove room -->
+            </form>
         </div>
 					
 		<!-- temp placebolder values for visual testing -->
