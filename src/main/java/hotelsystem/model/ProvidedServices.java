@@ -26,7 +26,6 @@ public class ProvidedServices {
     	this.price = price;
     }
 
-	//Getters and setters
 	public Long getId() {
 		return id;
 	}
@@ -42,7 +41,7 @@ public class ProvidedServices {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getDescription() {
 		return description;
 	}
@@ -59,9 +58,17 @@ public class ProvidedServices {
 		this.price = price;
 	}
 
-	//toString
+	public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
+	}
+
 	@Override
 	public String toString() {
-		return "ProvidedServices [id=" + id + ", name=" + name + "]";
+		return "ProvidedServices [name=" + name + ", description=" + description + ", price=" + price + ", booking="
+				+ booking + "]";
 	}
 }

@@ -12,7 +12,8 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     //Each booking has a customer and a room (?)
-    private Date date;
+    private Date startDate;
+    private Date endDate;
     
     @ManyToOne
     @JoinColumn(name = "CUSTOMER_ID")
@@ -29,15 +30,14 @@ public class Booking {
     public Booking() {
     	this.providedServices = new ArrayList<ProvidedServices>();
     }
-    
-    //Parameterized constructor
-    public Booking(Customer customer, Date date, Room room) {
+
+    public Booking(Customer customer, Room room, Date startDate, Date endDate) {
         this.customer = customer;
-        this.date = date;
         this.room = room;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
-    //Getters and setters
     public Long getId() {
         return id;
     }
@@ -46,20 +46,28 @@ public class Booking {
         this.id = id;
     }
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
     public Customer getCustomer() {
         return customer;
     }
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-    
-    public Date getDate() {
-    	return date;
-    }
-    
-    public void setDate(Date date) {
-    	this.date = date;
     }
 
     public Room getRoom() {
@@ -70,9 +78,17 @@ public class Booking {
         this.room = room;
     }
 
-    //toString
-	@Override
-	public String toString() {
-		return "Booking [id=" + id + ", customer=" + customer + ", room=" + room + "]";
-	}
+    public List<ProvidedServices> getProvidedServices() {
+        return providedServices;
+    }
+
+    public void setProvidedServices(List<ProvidedServices> providedServices) {
+        this.providedServices = providedServices;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking [startDate=" + startDate + ", endDate=" + endDate + ", customer=" + customer + ", room=" + room
+                + ", providedServices=" + providedServices + "]";
+    }
 }
