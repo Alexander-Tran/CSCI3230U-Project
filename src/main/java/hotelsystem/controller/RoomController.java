@@ -14,9 +14,11 @@ import java.util.List;
 @Controller
 class RoomController {
 
+	// Autowire room service
     @Autowired
     private RoomService roomService;
     
+    // Load rooms page
     @GetMapping("/rooms")
     public String viewHomePage(Model model) {
         Room room = new Room();
@@ -25,18 +27,21 @@ class RoomController {
         return "rooms";
     }
 
+    // Save a room
     @PostMapping("/save-room")
     public String saveRoom(@ModelAttribute("room") Room room) {
         roomService.save(room);
         return "redirect:/rooms";
     }
     
+    // Remove a room by ID
     @PostMapping("/remove-room")
     public String deleteRoom(Long id) {
         roomService.delete(id);
         return "redirect:/rooms";
     }
     
+    // Search room by type
     @GetMapping("/search")
     public String searchRoom(Model model, @RequestParam String type) {
         List<Room> returnedRooms = roomService.searchByType(type);

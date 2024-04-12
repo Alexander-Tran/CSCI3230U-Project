@@ -46,7 +46,35 @@ header h1 {
 }
 
 .title {
-    padding-top: 20px;
-    padding-left: 20%;
+    margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 20%;
+	
+    text-align: left;    
 }
-/* probability want to create multiple .css files for each html page*/
+
+.group-members {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 20%;
+	
+    text-align: left; 
+}
+
+.group-list {
+	margin-left: 15px;
+}
+
+.subtitle {
+    margin-top: 20px;
+	margin-left: 20%;
+	
+    text-align: left;    
+}
+
+.description {
+	margin-left: 20%;
+	
+	width: 62.5%;
+    text-align: left;  
+}

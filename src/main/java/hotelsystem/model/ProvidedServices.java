@@ -26,6 +26,7 @@ public class ProvidedServices {
     	this.price = price;
     }
 
+    // Setters, getters, and tostring
 	public Long getId() {
 		return id;
 	}

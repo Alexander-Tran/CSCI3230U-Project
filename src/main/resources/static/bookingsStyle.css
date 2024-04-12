@@ -46,25 +46,44 @@ header h1 {
 }
 
 .title {
-    padding-top: 20px;
-    padding-left: 20%;
+    margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 20%;
+	
+    text-align: left;  
 }
 
 .subtitle {
+	margin-top: 20px;
+	margin-left: 20%;
+	
+    text-align: left;  
+}
 
-    padding-top: 20px;
-    padding-left: 20%;
-    margin-left: 20px;
+.add-booking-container {
+    margin-left: 20%;
 }
 
 /* room listings style */
 .bookings-container {
     /* margin-top: 10px; */
     /* padding: 10px; */
+    
+    margin-left: 20%;
 
     display: flex;
     flex-direction: column; /* stack items vertically */
-    align-items: center; /* center items horizontally */
+    align-items: left; /* center items horizontally */
+}
+
+.booking-info-form {
+    display: flex;
+    flex-direction: column;		/* display items (label, input) vertically */ 
+    align-items: flex-start; 	/* Align items to the start of the flex container */
+}
+
+.booking-info-form input {
+    margin-bottom: 5px; 
 }
 
 .booking-card {
@@ -72,7 +91,7 @@ header h1 {
 
     border: 1px solid;
     border-color: black;
-    width: 800px;
+    width: 70%;
 
     padding: 10px;
     margin-top: 10px;
@@ -80,36 +99,31 @@ header h1 {
     display: flex;
 }
 
-.booking-card img {
-    width: 60%;
-    max-height: 100px;
-    object-fit: cover;
-}
-
 .customer-details { 
     width: 30%;
-    object-fit: cover;
     text-align: left;
     display: flex;
     flex-direction: column; 
 }
 
 .room-details {
+	width: 30%;
     text-align: left;
     display: flex;
     flex-direction: column; 
+    object-fit: cover;
+     
 }
 
-.service-list {
+.services-list {
 	text-align: left;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
+	flex-grow: 1;
 }
 
-.room-details .room-pricing {
-
+.room-number, .room-type, .room-pricing, .room-booked-dates {
     display: flex;
-    /* flex-direction: column;  */
     align-items: center; 
 }
 
@@ -117,7 +131,7 @@ header h1 {
     padding-right: 10px;
 }
 
-.room-details .room-price {
+.room-price {
     font-size: 18px;
     font-weight: bold;
 }

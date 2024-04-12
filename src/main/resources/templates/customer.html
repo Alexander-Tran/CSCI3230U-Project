@@ -4,26 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Manager - Customers</title>
-    <link rel = "stylesheet" href = "customerStyle.css">
+    <link rel = "stylesheet" href = "../static/customerStyle.css">
 </head>
 <body>
     <header>
-        <h1>Hotel Manager (name w.i.p.)</h1>
+        <h1>Hotel Manager</h1>
         <nav class = "page-links" >
 	    <a href = "/">Index</a>
             <a href = "/rooms">Rooms</a>   
             <a href = "/bookings">Bookings</a> 
             <a href = "/services">Service</a>
             <a href = "/customers">Customers</a> 
+			
+			<!--
+			<a th:href="@{/rooms}">Rooms</a>   
+            <a th:href = "@{/bookings}">Bookings</a> 
+            <a th:href = "@{/services}">Service</a>
+            <a th:href = "@{/customers}">Customers</a> 
+			-->
+			
         </nav>
     </header>
 
-    <h1 class = "title"> List of Customers </h1>
+    <h1 class = "title">Manage Customers</h1>
 	
 	<!-- this is where you enter info to add new customers (first name, last name, email, phone ) -->
 	<section class = "add-customer-container">
 		<!-- object creation is handled in frontend? -->
-		<form th:action="@{/save-customer}" method = "post" th:object="${customer}">
+		<form class = "customer-info-form" th:action="@{/save-customer}" method = "post" th:object="${customer}">
 			<label>First Name:</label>
 			<input type="text" th:field="*{firstName}" />
 			<label>Last Name:</label>
@@ -38,37 +46,37 @@
 		</form>
 	</section>
 	
-	<h2 class = "subtitle"> Customers </h2>
+	<h2 class = "subtitle"> List of Customers Details </h2>
 	
 	<section class = "customers-container"> 
 		<!-- idk what the name of the list of rooms list is supposed to be (says listBookings right now and only one method in controller) -->
 		<div th:each="customer : ${listCustomers}">
 	        <div class = "customer-card">
-	            
-				<p th:text="${customer.firstName}">
-				<p th:text="${customer.lastName}">
-				<p th:text="${customer.email}">
-				<p th:text="${customer.phoneNumber}">
-			
-				<button class = "remove-customer-button">Remove</button>
+				<div class = "customer-details">
+					<p th:text="${customer.firstName}">
+					<p th:text="${customer.lastName}">
+					<p th:text="${customer.email}">
+					<p th:text="${customer.phoneNumber}">
+				</div>
 				<form th:action="@{/remove-customer(id=${customer.id})}" method="post">
-            		<button type="submit" class="remove-customer-button">Remove</button> <!-- add action to remove room -->
-            	</form> <!-- add action to remove customer -->
+            		<button type="submit" class="remove-customer-button">Remove</button> 
+            	</form> 
 	        </div>	
 		</div>
 					
 		<!-- temp placebolder values for visual testing -->
 	    <div class = "customer-card">
-	
 	        <div class = "customer-details">
 	            <p class = "customer-first">First</p>
 				<p class = "customer-first">Last</p>
 				<p class = "customer-first">email@email.com</p>
 				<p class = "customer-first">123-123-1234</p>
-				
-	            <button class "remove-customer-button">Remove</button>
-	        </div>
+			</div>
+			<form method="post">
+				<button type="submit" class="remove-customer-button">Remove</button> 
+			</form> 
 	    </div>
+		<!-- end of temp -->
 	</section>
 
 </body>

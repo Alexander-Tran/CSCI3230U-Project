@@ -4,26 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Manager - Services</title>
-    <link rel = "stylesheet" href = "serviceStyle.css">
+    <link rel = "stylesheet" href = "../static/serviceStyle.css">
 </head>
 <body>
     <header>
-        <h1>Hotel Manager (name w.i.p.)</h1>
+        <h1>Hotel Manager</h1>
         <nav class = "page-links" >
 	    <a href = "/">Index</a>
             <a href = "/rooms">Rooms</a>   
             <a href = "/bookings">Bookings</a> 
             <a href = "/services">Service</a>
             <a href = "/customers">Customers</a> 
+			
+			<!--
+			<a th:href="@{/rooms}">Rooms</a>   
+            <a th:href = "@{/bookings}">Bookings</a> 
+            <a th:href = "@{/services}">Service</a>
+            <a th:href = "@{/customers}">Customers</a> 
+			-->
+			
         </nav>
     </header>
 
-    <h1 class = "title">List of Services</h1>
+    <h1 class = "title">Manage Services</h1>
 
 	<!-- this is where you enter info to add new services (name, description, price) -->
 	<section class = "add-service-container">
 		<!-- object creation is handled in frontend -->
-		<form th:action="@{/save-service}" method = "post" th:object="${providedService}">
+		<form class = "service-info-form" th:action="@{/save-service}" method = "post" th:object="${providedService}">
 			<label>Name: </label>
 			<input type="text" th:field="*{name}" />
 			<label>Description: </label>
@@ -36,41 +44,46 @@
 		</form>
 	</section>
 	
-	<h2 class = "subtitle"> Services </h2>
+	<h2 class = "subtitle"> List of Services </h2>
 		
 	    <section class = "service-container"> 
 			
-			<!-- idk what the name of the list of services is supposed to be (says listBookings right now) -->
 			<div th:each="service : ${listProvidedServices}">
 	            <div class = "service-card">
+					<div class = "service-details">
+						<p th:text="${service.name}">
+						<p th:text="${service.description}">
+						<p th:text="${service.price}">
+					</div>
+					<form th:action="@{/remove-service(id=${service.id})}" method="post">	<!-- make sure action to remove is right -->
+		            	<button type="submit" class="remove-service-button">Remove</button> 
+					</form> 
 	                
-					<p th:text="${service.name}">
-					<p th:text="${service.description}">
-					<p th:text="${service.price}">
-					
-					<form th:action="@{/remove-service(id=${service.id})}" method="post">
-            			<button type="submit" class="room-book-button">Remove</button>
-            		</form>
 	            </div>	
 			</div>
 			
 			<!-- temp placebolder values for visual testing -->
 	        <div class = "service-card">
-				
-				<p> Cleaning Services </p>
-				<p> Our staff will clean the room</p>
-				<p> Price: $20</p>
-
-				<button class = "room-book-button">Remove</button>
+				<div class = "service-details">
+					<p> Cleaning Services </p>
+					<p> Our staff will clean the room</p>
+					<p> Price: $20</p>
+				</div>
+				<form method="post">	
+	            	<button type="submit" class="remove-service-button">Remove</button> 
+				</form> 
 	        </div>
 			<div class = "service-card">
-				<p> Food Services </p>
-				<p> Our staff will provide lunch and dinner</p>
-				<p> Price: $20</p>
-				
-				<button class = "room-book-button">Remove</button>
+				<div class = "service-details">
+					<p> Food Services </p>
+					<p> Our staff will provide lunch and dinner</p>
+					<p> Price: $20</p>
+				</div>
+				<form method="post">	
+	            	<button type="submit" class="remove-service-button">Remove</button> 
+				</form>
 			</div>
-			
+			<!-- end of temp -->
 		</section>
 	
 </body>

@@ -22,12 +22,14 @@ public class Room {
     	this.bookings = new ArrayList<Booking>();
     }
 
+    // Parameterized constructor
     public Room(int roomNumber, String type, double price) {
         this.roomNumber = roomNumber;
         this.type = type;
         this.price = price;
     }
-
+    
+    // Setters, getters, and tostring
     public Long getId() {
         return id;
     }
