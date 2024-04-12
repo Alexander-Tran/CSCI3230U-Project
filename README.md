@@ -4,7 +4,10 @@
 3. [Navigating the application](#navigating-the-application)
 
 # Group members
-Evan Dong, Sahil Kamil, Alexander Tran, Ashar Izhar
+Evan Dong (100829075)  
+Sahil Kamil (100819433)  
+Alexander Tran (100788359)  
+Ashar Izhar (100786125)  
 
 # About the application
 This application showcases a hotel management system, specifically through management's side. This means that we can add new rooms, customers, bookings, and services to the system. 
