@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import hotelsystem.model.Booking;
 import hotelsystem.model.Customer;
+import hotelsystem.model.Room;
 import hotelsystem.service.BookingService;
 
 @Controller
@@ -34,34 +35,12 @@ public class BookingController {
     }
 
     @PostMapping("/save-booking")
-    public String saveBooking(@ModelAttribute("booking") Booking booking, Model model, @RequestParam("email") String email) {	
-//    	if (bookingService.getCustomerByEmail(email) != null) {
-//	    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//	    	try {
-//				Date sdate = format.parse(booking.getStartDate());
-//				Date edate = format.parse(booking.getEndDate());
-//				
-//				if (sdate.before(edate)) {
-//					bookingService.save(booking);
-//				}
-//				else {
-//					System.out.println("Invalid date");
-//				}
-//				
-//			} catch (ParseException e) {
-//				// TODO Auto-generated catch block
-//				System.out.println("Date error");
-//			}
-//    	}
-//    	else {
-//    		System.out.println("Customer does not exist");
-//    	}
-    	
-    	//Print list of customers
-    	List<Customer> customers = (List<Customer>)model.getAttribute("listCustomers");
-    	for (Customer customer : customers) {
-    		System.out.println(customer.toString());
-    	}
+    public String saveBooking(@ModelAttribute("booking") Booking booking, Model model, @RequestParam("email") String email, @RequestParam("roomNumber") int roomNumber) {
+        Customer customer = bookingService.getCustomerByEmail(email);
+        Room room = bookingService.getRoomByRoomNumber(roomNumber);
+        booking.setCustomer(customer);	
+        booking.setRoom(room);
+        bookingService.save(booking);
 
         return "redirect:/bookings";
     }
