@@ -21,10 +21,12 @@ import hotelsystem.service.BookingService;
 
 @Controller
 public class BookingController {
-
+	
+	// Autowire booking service
     @Autowired
     private BookingService bookingService;
 
+    // Call service to display bookings page
     @GetMapping("/bookings")
     public String viewHomePage(Model model) {
         Booking booking = new Booking();

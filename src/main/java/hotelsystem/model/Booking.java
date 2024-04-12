@@ -38,6 +38,7 @@ public class Booking {
         this.endDate = endDate;
     }
 
+    // Setters, getters, and tostring
     public Long getId() {
         return id;
     }

@@ -11,22 +11,27 @@ import java.util.List;
 
 @Service
 public class BookingService {
-
+	
+	// Autowire booking repo
     @Autowired
     private BookingRepository bookingRepository;
 
+    // Return list of all bookings
     public List<Booking> listAll() {
         return bookingRepository.findAll();
     }
 
+    // Save booking object
     public void save(Booking booking) {
         bookingRepository.save(booking);
     }
 
+    // Return a booking by ID
     public Booking get(Long id) {
         return bookingRepository.findById(id).get();
     }
     
+    // Return a customer my email
     public Customer getCustomerByEmail(String email) {
     	CustomerService customerService = new CustomerService();
     	return customerService.searchByEmail(email);
