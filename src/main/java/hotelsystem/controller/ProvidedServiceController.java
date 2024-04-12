@@ -29,4 +29,10 @@ public class ProvidedServiceController {
         providedServiceService.save(providedService);
         return "redirect:/services";
     }
+    
+    @PostMapping("/remove-service")
+    public String removeService(Long id) {
+    	providedServiceService.delete(id);
+    	return "redirect:/services";
+    }
 }

@@ -24,5 +24,9 @@ public class ProvidedServiceService {
     public ProvidedServices get(Long id) {
         return serviceRepository.findById(id).get();
     }
+    
+    public void delete(Long id) {
+    	serviceRepository.deleteById(id);
+    }
 }
 

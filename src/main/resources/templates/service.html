@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Manager - Services</title>
-    <link rel = "stylesheet" href = "../static/serviceStyle.css">
+    <link rel = "stylesheet" href = "serviceStyle.css">
 </head>
 <body>
     <header>
@@ -30,7 +30,7 @@
 			<input type="text" th:field="*{description}" />
 			<!-- need to convert price to double for backend or change price in backend to String -->
 			<label>Price: </label>
-			<input type="text" th:field="*{price}" />
+			<input type="text" id="price" th:field="*{price}" />
 			
 			<button type="submit">Save</button>
 		</form>
@@ -47,8 +47,10 @@
 					<p th:text="${service.name}">
 					<p th:text="${service.description}">
 					<p th:text="${service.price}">
-				
-					<button class = "room-book-button">Remove</button> <!-- add action to remove service -->
+					
+					<form th:action="@{/remove-service(id=${service.id})}" method="post">
+            			<button type="submit" class="room-book-button">Remove</button>
+            		</form>
 	            </div>	
 			</div>
 			
