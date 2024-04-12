@@ -1,5 +1,7 @@
 package hotelsystem.controller;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +28,27 @@ public class CustomerController {
 
     @PostMapping("/save-customer")
     public String saveCustomer(@ModelAttribute("customer") Customer customer) {
-        customerService.save(customer);
+    	//Check proper email
+    	Pattern email_regex = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    	Matcher email_matcher = email_regex.matcher(customer.getEmail());
+    	
+    	//Check proper phone
+    	Pattern phone_regex = Pattern.compile("^\\d{10}$");
+    	Matcher phone_matcher = phone_regex.matcher(customer.getPhoneNumber().toString());
+    	
+    	if (email_matcher.matches() && phone_matcher.matches()) {
+    		customerService.save(customer);
+    	}
+    	else {
+    		System.out.println("Error validating information");
+    	}
+    	
         return "redirect:/customers";
+    }
+    
+    @PostMapping("/remove-customer")
+    public String deleteCustomer(Long id) {
+    	customerService.delete(id);
+    	return "redirect:/customers";
     }
 }

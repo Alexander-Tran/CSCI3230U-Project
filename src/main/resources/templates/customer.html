@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Manager - Customers</title>
-    <link rel = "stylesheet" href = "../static/customerStyle.css">
+    <link rel = "stylesheet" href = "customerStyle.css">
 </head>
 <body>
     <header>
@@ -50,7 +50,10 @@
 				<p th:text="${customer.email}">
 				<p th:text="${customer.phoneNumber}">
 			
-				<button class = "remove-customer-button">Remove</button> <!-- add action to remove customer -->
+				<button class = "remove-customer-button">Remove</button>
+				<form th:action="@{/remove-customer(id=${customer.id})}" method="post">
+            		<button type="submit" class="remove-customer-button">Remove</button> <!-- add action to remove room -->
+            	</form> <!-- add action to remove customer -->
 	        </div>	
 		</div>
 					
