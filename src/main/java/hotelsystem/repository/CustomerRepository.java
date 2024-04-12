@@ -9,5 +9,5 @@ import org.springframework.data.repository.query.Param;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 	@Query("select c from Customer c where upper(c.email) like concat('%', upper(:email), '%')")
-	List<Customer> findByEmail(@Param("email") String email);
+	Customer findByEmail(@Param("email") String email);
 } 

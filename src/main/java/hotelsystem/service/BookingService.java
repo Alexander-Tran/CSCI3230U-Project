@@ -1,6 +1,8 @@
 package hotelsystem.service;
 
 import hotelsystem.model.Booking;
+import hotelsystem.service.CustomerService;
+import hotelsystem.model.Customer;
 import hotelsystem.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,11 @@ public class BookingService {
 
     public Booking get(Long id) {
         return bookingRepository.findById(id).get();
+    }
+    
+    public Customer getCustomerByEmail(String email) {
+    	CustomerService customerService = new CustomerService();
+    	return customerService.searchByEmail(email);
     }
 }
 

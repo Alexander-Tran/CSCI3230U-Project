@@ -24,14 +24,14 @@
 	<section class = "add-booking-container">
 		<!-- handle object creation in backend -->
 		<form th:action="@{/save-booking}" method = "post" th:object="${booking}">
-			<label>Start Date: </label>
-			<input type="text" th:field="*{startDate}" />
-			<label>End Date: </label>
-			<input type="text" th:field="*{endDate}" />
+			<label>Start Date [YYYY-MM-DD]: </label>
+			<input type="date" th:field="*{startDate}" name="startDate"/>
+			<label>End Date [YYYY-MM-DD]: </label>
+			<input type="date" th:field="*{endDate}" name="endDate"/>
 			<!-- be able to search by customer email in backend ('getCustomerByEmail' method) and add it to the booking object-->
 			<!-- put this inside the 'card' so that you can add services to the list (type in name of service, then have 'getServiceByName' method in backend to get the service by name from service repo and add the service to the booking object's service list-->
 			<label>Customer email: </label>
-			<input type="text" th:field="*{customer.email}" />
+			<input type="text" name="email" />
 			<label>Room number: </label>
 			<input type="text" th:field="*{room.roomNumber}" />
 			

@@ -25,9 +25,9 @@ public class CustomerService {
         return customerRepository.findById(id).get();
     }
     
-//    public Customer get(String email) {
-//    	return customerRepository.findByEmail(email);
-//    }
+    public Customer searchByEmail(String email) {
+    	return customerRepository.findByEmail(email);
+    }
     
     public void delete(Long id) {
     	customerRepository.deleteById(id);
