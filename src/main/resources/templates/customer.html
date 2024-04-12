@@ -14,15 +14,23 @@
             <a href = "/bookings">Bookings</a> 
             <a href = "/services">Service</a>
             <a href = "/customers">Customers</a> 
+			
+			<!--
+			<a th:href="@{/rooms}">Rooms</a>   
+            <a th:href = "@{/bookings}">Bookings</a> 
+            <a th:href = "@{/services}">Service</a>
+            <a th:href = "@{/customers}">Customers</a> 
+			-->
+			
         </nav>
     </header>
 
-    <h1 class = "title"> List of Customers </h1>
+    <h1 class = "title"> Manage Customers </h1>
 	
 	<!-- this is where you enter info to add new customers (first name, last name, email, phone ) -->
 	<section class = "add-customer-container">
 		<!-- object creation is handled in frontend? -->
-		<form th:action="@{/save-customer}" method = "post" th:object="${customer}">
+		<form class = "customer-info-form" th:action="@{/save-customer}" method = "post" th:object="${customer}">
 			<label>First Name:</label>
 			<input type="text" th:field="*{firstName}" />
 			<label>Last Name:</label>
@@ -37,7 +45,7 @@
 		</form>
 	</section>
 	
-	<h2 class = "subtitle"> Customers </h2>
+	<h2 class = "subtitle"> List of Customers Details </h2>
 	
 	<section class = "customers-container"> 
 		<!-- idk what the name of the list of rooms list is supposed to be (says listBookings right now and only one method in controller) -->

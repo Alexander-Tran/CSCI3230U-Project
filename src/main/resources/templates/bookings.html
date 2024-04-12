@@ -14,15 +14,23 @@
             <a href = "/bookings">Bookings</a> 
             <a href = "/services">Service</a>
             <a href = "/customers">Customers</a> 
+			
+			<!--
+			<a th:href="@{/rooms}">Rooms</a>   
+            <a th:href = "@{/bookings}">Bookings</a> 
+            <a th:href = "@{/services}">Service</a>
+            <a th:href = "@{/customers}">Customers</a> 
+			-->
+						
         </nav>
     </header>
 
-    <h1 class = "title"> List of Customer Bookings </h1>
+    <h1 class = "title"> Manage Customer Bookings </h1>
 
 	<!-- this is where you enter info to add new bookings (start date, end date, customer email, service?) -->
 	<section class = "add-booking-container">
 		<!-- handle object creation in backend -->
-		<form th:action="@{/save-booking}" method = "post" th:object="${booking}">
+		<form class = "booking-info-form" th:action="@{/save-booking}" method = "post" th:object="${booking}">
 			<label>Start Date: </label>
 			<input type="text" th:field="*{startDate}" />
 			<label>End Date: </label>
@@ -40,7 +48,7 @@
 		</form>
 	</section>
 	
-	<h2 class = "subtitle"> Bookings </h2>
+	<h2 class = "subtitle"> List of Customer Bookings </h2>
 	
     <section class = "bookings-container"> 
 		<div th:each="booking : ${listBookings}">
@@ -65,8 +73,8 @@
                         <p>per night</p>
                     </div>
                     <p class = "booking-details" th:text="${booking.startDate}">
-                    
                 </div>
+				<!-- service details list (name, description, price)-->
 				<div class = "services-list" th:each="service : ${booking.providedServices}">
 					<p th:text="${service.name}">
 					<p th:text="${service.description}">
