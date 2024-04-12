@@ -104,6 +104,13 @@ header h1 {
     display: flex;
 }
 
+.service-details {	
+    text-align: left;
+    display: flex;
+    flex-direction: column; 
+    flex-grow: 1;
+}
+
 .service-card p {
     padding-right: 10px;
 }

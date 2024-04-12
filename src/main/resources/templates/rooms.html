@@ -8,8 +8,9 @@
 </head>
 <body>
     <header>
-        <h1>Hotel Manager (name w.i.p.)</h1>
+        <h1>Hotel Manager</h1>
         <nav class = "page-links" >
+        	<a href = "/">Index</a>
             <a href = "/rooms">Rooms</a>   
             <a href = "/bookings">Bookings</a> 
             <a href = "/services">Service</a>
@@ -25,9 +26,9 @@
         </nav>
     </header>
 
-    <h1 class = "title"> Manage Rooms </h1>
+	<h1 class = "title">Manage Rooms</h1> 
 	
-	<!-- this is where you enter info to add new rooms (room number, price - per night?) -->
+	<!-- this is where you enter info to add new rooms (room number, price per night) -->
 	<section class = "add-room-container">
 		<!-- object creation is handled in frontend? -->
 		<form class = "room-info-form" th:action="@{/save-room}" th:object="${room}" method = "post">
@@ -44,38 +45,42 @@
 		</form>
 	</section>
 
-    <h2 class = "subtitle"> List of Rooms </h2>
+    <h2 class = "subtitle">List of Rooms</h2>
 
     <section class = "rooms-container"> 
 		<!-- idk what the name of the list of rooms list is supposed to be (says listBookings right now and only one method in controller) -->
-		<div class = "room-card" th:each="room : ${listRooms}">
+
+		<div th:each="room : ${listRooms}" class="room-card">
 			<!-- just some online hotel image to make the frontend look prettier... -->
 			<img src = "../images/room-two-beds.png" alt = "Room Image" class = "room-image"> 
+			
 			<div class = "room-details"> 
-	            <div th:text="${room.roomNumber}">Room Number</div>
-	            <div th:text="${room.type}">Room Type</div>
-	            <div th:text="${room.price}">Room Price</div>
-	            <button class = "remove-room-button">Remove</button> <!-- add action to remove room -->
+	            <div th:text="${room.roomNumber}" class="room-number">Room Number</div>
+	            <div th:text="${room.type}" class="room-type">Room Type</div>
+	            <div th:text="${room.price}" class="room-price">Room Price</div>
 			</div>
+			
+			<form th:action="@{/remove-room(id=${room.id})}" method="post">
+            	<button type="submit" class="remove-room-button">Remove</button>
+            </form>
+
         </div>
 					
 		<!-- temp placebolder values for visual testing -->
         <div class = "room-card">
+			
             <!-- just some online hotel image to make the frontend look prettier... -->
             <img src = "../images/room-shared-bed.png" alt = "Room Image" class = "room-image"> 
-
-            <div class = "room-details">
+			
+			<div class = "room-details">
                 <p class = "room-number"> room 404 </p>
-				
+				<p class = "room-type">Single Bed</p>
 				<p class = "room-price"> Price: $124 per night</p> <!-- not sure which style we should use -->
-                <div class = "room-pricing"> 
-                    <p> Price: </p>
-                    <p class = "room-price"> $124</p> 
-                    <p>per night</p>
-                </div>
 				
-                <button class = "remove-room-button">Remove</button>
             </div>
+			<form  method="post">
+            	<button type="submit" class="remove-room-button">Remove</button>
+            </form>
         </div>
     </section>
 </body>

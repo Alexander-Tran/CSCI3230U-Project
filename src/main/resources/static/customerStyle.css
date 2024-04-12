@@ -112,6 +112,13 @@ header h1 {
     display: flex;
 }
 
+.customer-details {	
+    text-align: left;
+    display: flex;
+    flex-direction: column; 
+    flex-grow: 1;
+}
+
 .customer-card p {
     padding-right: 10px;
 }

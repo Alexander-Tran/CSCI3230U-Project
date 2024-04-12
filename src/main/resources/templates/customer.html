@@ -8,8 +8,9 @@
 </head>
 <body>
     <header>
-        <h1>Hotel Manager (name w.i.p.)</h1>
+        <h1>Hotel Manager</h1>
         <nav class = "page-links" >
+	    <a href = "/">Index</a>
             <a href = "/rooms">Rooms</a>   
             <a href = "/bookings">Bookings</a> 
             <a href = "/services">Service</a>
@@ -25,7 +26,7 @@
         </nav>
     </header>
 
-    <h1 class = "title"> Manage Customers </h1>
+    <h1 class = "title">Manage Customers</h1>
 	
 	<!-- this is where you enter info to add new customers (first name, last name, email, phone ) -->
 	<section class = "add-customer-container">
@@ -51,13 +52,15 @@
 		<!-- idk what the name of the list of rooms list is supposed to be (says listBookings right now and only one method in controller) -->
 		<div th:each="customer : ${listCustomers}">
 	        <div class = "customer-card">
-	            
-				<p th:text="${customer.firstName}">
-				<p th:text="${customer.lastName}">
-				<p th:text="${customer.email}">
-				<p th:text="${customer.phoneNumber}">
-			
-				<button class = "remove-customer-button">Remove</button> <!-- add action to remove customer -->
+				<div class = "customer-details">
+					<p th:text="${customer.firstName}">
+					<p th:text="${customer.lastName}">
+					<p th:text="${customer.email}">
+					<p th:text="${customer.phoneNumber}">
+				</div>
+				<form th:action="@{/remove-customer(id=${customer.id})}" method="post">
+            		<button type="submit" class="remove-customer-button">Remove</button> 
+            	</form> 
 	        </div>	
 		</div>
 					
@@ -69,9 +72,11 @@
 				<p class = "customer-first">Last</p>
 				<p class = "customer-first">email@email.com</p>
 				<p class = "customer-first">123-123-1234</p>
-				
-	            <button class "remove-customer-button">Remove</button>
-	        </div>
+			</div>
+			<form method="post">
+				<button type="submit" class="remove-customer-button">Remove</button> 
+			</form> 
+	       
 	    </div>
 	</section>
 

@@ -105,21 +105,17 @@ header h1 {
 
 .room-card img {
     width: 30%;
-    height: 30%;
+    height: auto;
     object-fit: cover;
 }
 
 .room-details {
+	margin-left: 10px;
+	
     text-align: left;
     display: flex;
     flex-direction: column; 
-}
-
-.room-details .room-pricing {
-
-    display: flex;
-    /* flex-direction: column;  */
-    align-items: center; 
+    flex-grow: 1;
 }
 
 .room-details p {

@@ -12,8 +12,8 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     //Each booking has a customer and a room (?)
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     
     @ManyToOne
     @JoinColumn(name = "CUSTOMER_ID")
@@ -31,7 +31,7 @@ public class Booking {
     	this.providedServices = new ArrayList<ProvidedServices>();
     }
 
-    public Booking(Customer customer, Room room, Date startDate, Date endDate) {
+    public Booking(Customer customer, Room room, String startDate, String endDate) {
         this.customer = customer;
         this.room = room;
         this.startDate = startDate;
@@ -46,19 +46,19 @@ public class Booking {
         this.id = id;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 

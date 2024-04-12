@@ -99,36 +99,31 @@ header h1 {
     display: flex;
 }
 
-.booking-card img {
-    width: 60%;
-    max-height: 100px;
-    object-fit: cover;
-}
-
 .customer-details { 
     width: 30%;
-    object-fit: cover;
     text-align: left;
     display: flex;
     flex-direction: column; 
 }
 
 .room-details {
+	width: 30%;
     text-align: left;
     display: flex;
     flex-direction: column; 
+    object-fit: cover;
+     
 }
 
-.service-list {
+.services-list {
 	text-align: left;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
+	flex-grow: 1;
 }
 
-.room-details .room-pricing {
-
+.room-number, .room-type, .room-pricing, .room-booked-dates {
     display: flex;
-    /* flex-direction: column;  */
     align-items: center; 
 }
 
@@ -136,7 +131,7 @@ header h1 {
     padding-right: 10px;
 }
 
-.room-details .room-price {
+.room-price {
     font-size: 18px;
     font-weight: bold;
 }

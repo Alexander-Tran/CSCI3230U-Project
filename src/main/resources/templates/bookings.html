@@ -8,8 +8,9 @@
 </head>
 <body>
     <header>
-        <h1>Hotel Manager (name w.i.p.)</h1>
+        <h1>Hotel Manager</h1>
         <nav class = "page-links" >
+	    <a href = "/">Index</a>
             <a href = "/rooms">Rooms</a>   
             <a href = "/bookings">Bookings</a> 
             <a href = "/services">Service</a>
@@ -36,13 +37,11 @@
 			<label>End Date: </label>
 			<input type="text" th:field="*{endDate}" />
 			<!-- be able to search by customer email in backend ('getCustomerByEmail' method) and add it to the booking object-->
-			<label>Customer email: </label>
-			<input type="text" th:field="*{email}" />
 			<!-- put this inside the 'card' so that you can add services to the list (type in name of service, then have 'getServiceByName' method in backend to get the service by name from service repo and add the service to the booking object's service list-->
-			<label>Customer: </label>
-			<input type="text" th:field="*{customer}" />
+			<label>Customer email: </label>
+			<input type="text" th:field="*{customer.email}" />
 			<label>Room number: </label>
-			<input type="text" th:field="*{room}" />
+			<input type="text" th:field="*{room.roomNumber}" />
 			
 			<button type="submit">Save</button>
 		</form>
@@ -54,42 +53,59 @@
 		<div th:each="booking : ${listBookings}">
 			<!-- each booking card contains information on the booking: one side will be for customer details, another will be for room details, and another will be for list of services-->
             <div class = "booking-card">
-                <!-- bookings probably don't need an image of the room -->
-                <!-- <img src = "" alt = "Room Image" class = "room-image"> -->
                 
                 <!-- customer details (first name, last name, email, phone)-->
 				<div class = "customer-details">
+					<p>Customer Details: </p>
 					<p th:text="${booking.customer.firstName}">
 					<p th:text="${booking.customer.lastName}">
 					<p th:text="${booking.customer.email}">
 					<p th:text="${booking.customer.phoneNumber}">
 				</div>
+				
 				<!-- room details (number, price, description?)-->
                 <div class = "room-details">
-                    <p th:text="${booking.room.number}">
+					<p>Room Details: </p>
+					<div class = "room-number"> 
+						<p>Room </p>
+						<p th:text="${booking.room.roomNumber}">
+					</div>
+					<div class = "room-type"> 
+						<p> Type: </p>
+						<p th:text="${booking.room.type}"> 
+					</div>
                     <div class = "room-pricing"> 
-                        <p> Price: </p>
+                        <p>Price: </p>
                         <p th:text="${booking.room.price}"> 
-                        <p>per night</p>
+                        <p> per night</p>
                     </div>
-                    <p class = "booking-details" th:text="${booking.startDate}">
+					<div class = "room-booked-dates">
+						<p th:text="${booking.startDate}">
+						<p> to </p>
+						<p th:text="${booking.endDate}">
+					</div>
                 </div>
+				
 				<!-- service details list (name, description, price)-->
-				<div class = "services-list" th:each="service : ${booking.providedServices}">
-					<p th:text="${service.name}">
-					<p th:text="${service.description}">
-					<p th:text="${service.price}">
+				<div class = "services-list">
+					<p>Booked Services: </p>
+					<div th:each="service : ${booking.providedServices}">
+						<p th:text="${service.name}">
+						<p th:text="${service.description}">
+						<p th:text="${service.price}">
+					</div>
 				</div>
-				<button class = "room-book-button">Remove</button> <!-- add action to remove booking -->
+				<form th:action="@{/remove-booking(id=${booking.id})}" method="post">	<!-- make sure action to remove is right -->
+	            	<button type="submit" class="remove-booking-button">Remove</button> 
+				</form> 
             </div>	
 		</div>
 		
 		<!-- temp placebolder values for visual testing -->
         <div class = "booking-card">
-            <!-- image can be what's inside the room? although all rooms will look pretty similar... -->
-            <!-- <img src = "" alt = "Room Image" class = "room-image"> -->
 			
 			<div class = "customer-details">
+				<p>Customer Details: </p>
 				<p > first </p>
 				<p > last </p>
 				<p > email@email.com </p>
@@ -97,16 +113,29 @@
 			</div>
 			
             <div class = "room-details">
-                <p class = "room-number"> room 404 </p>
+				<p>Room Details: </p>
+				<div class = "room-number">
+					<p> Room </p>
+					<p> 404 </p>
+				</div>
+				<div class = "room-type"> 
+					<p> Type: </p>
+					<p th:text="${booking.room.type}"> 
+				</div>
                 <div class = "room-pricing"> 
-                    <p> Price: </p>
-                    <p class = "room-price"> $124</p>
-                    <p>per night</p>
+                    <p>Price: </p>
+                    <p>$124</p>
+                    <p> per night</p>
                 </div>
-                <p class = "booking-details"> Mar 16 - Mar 18, 2024 (2 Nights) </p>
-                
+				<div class = "room-booked-dates">
+					<p> Mar 16 </p>
+					<p> to </p>
+					<p> Mar 18 </p>
+				</div>
             </div>
+			
 			<div class = "services-list">
+				<p>Booked Services: </p>
 				<p> Cleaning Services </p>
 				<p> Our staff will clean the room</p>
 				<p> Price: $20</p>
@@ -114,7 +143,9 @@
 				<p> Our staff will provide lunch and dinner</p>
 				<p> Price: $20</p>
 			</div>
-			<button class = "room-book-button">Remove</button>
+			<form method="post">	
+            	<button type="submit" class="remove-booking-button">Remove</button> 
+			</form> 
         </div>
 		
     </section>
