@@ -15,6 +15,8 @@ import hotelsystem.service.CustomerService;
 @Controller
 public class CustomerController {
 
+	
+	//Autowire customer service
     @Autowired
     private CustomerService customerService;
     
@@ -26,6 +28,7 @@ public class CustomerController {
         return "customer";
     }
 
+    // Save a customer
     @PostMapping("/save-customer")
     public String saveCustomer(@ModelAttribute("customer") Customer customer) {
     	//Check proper email
@@ -46,6 +49,7 @@ public class CustomerController {
         return "redirect:/customers";
     }
     
+    // Remove a customer by ID
     @PostMapping("/remove-customer")
     public String deleteCustomer(Long id) {
     	customerService.delete(id);

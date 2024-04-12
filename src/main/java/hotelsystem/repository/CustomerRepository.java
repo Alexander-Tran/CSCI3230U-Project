@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+// Create customer repo
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
+	// JPA query to find customer by email
 	@Query("select c from Customer c where upper(c.email) like concat('%', upper(:email), '%')")
-	List<Customer> findByEmail(@Param("email") String email);
+	Customer findByEmail(@Param("email") String email);
 } 
