@@ -9,6 +9,8 @@ Sahil Kamil (100819433)
 Alexander Tran (100788359)  
 Ashar Izhar (100786125)  
 
+Link to video: https://drive.google.com/file/d/1H46NpcfwyikCbRoxt1nN8oN8mBApC6wz/view?usp=sharing  
+
 # About the application
 This application showcases a hotel management system, specifically through management's side. This means that we can add new rooms, customers, bookings, and services to the system. 
 
